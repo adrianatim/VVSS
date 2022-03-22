@@ -6,17 +6,15 @@ import repository.StudentXMLRepo;
 public class TestAbstractXMLRepository {
 
     @Test
-    public void test_saveStudent_expectNullPointerException() {
+    public void TC1() {
         StudentXMLRepo studentXMLRepo = new StudentXMLRepo("src/main/resources/Studenti.xml");
 
-        NullPointerException exception = Assertions.assertThrows(NullPointerException.class, () -> {
-            studentXMLRepo.save(null);
-        });
+        NullPointerException exception = Assertions.assertThrows(NullPointerException.class, () -> studentXMLRepo.save(null));
         Assertions.assertEquals("Cannot invoke \"repository.HasID.getID()\" because \"entity\" is null", exception.getMessage());
     }
 
     @Test
-    public void test_saveStudent_expectNothing() {
+    public void TC2() {
         Student student = new Student("1", "Ana", 937, "anaAre@mere");
         StudentXMLRepo studentXMLRepo = new StudentXMLRepo("src/main/resources/Studenti.xml");
         Student studentToCompare = studentXMLRepo.save(student);
