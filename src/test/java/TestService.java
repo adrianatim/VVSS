@@ -1,4 +1,5 @@
 import domain.Student;
+import domain.Tema;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,7 @@ public class TestService {
 
     public static Service service;
     public static Student student;
+    public static Tema tema;
     public static Integer MAX_INT = 2147483647;
 
     @BeforeAll
@@ -32,6 +34,7 @@ public class TestService {
         NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
         service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
         student = new Student("1", "Ana Mere", 937, "anaAre@mere.com");
+        tema = new Tema("1", "Decriere tema", 3, 2);
     }
 
     @Test
@@ -253,5 +256,21 @@ public class TestService {
         student.setGrupa(1);
         Assertions.assertDoesNotThrow(() -> service.addStudent(student));
         student.setGrupa(937);
+    }
+
+    @Test
+    public void test_addEmptyTemaId_expectValidationException() {
+        tema.setID("");
+        ValidationException exception = Assertions.assertThrows(ValidationException.class, () -> service.addTema(tema));
+        Assertions.assertEquals("Numar tema invalid!", exception.getMessage());
+        tema.setID("1");
+    }
+
+    @Test
+    public void test_addNullTemaId_expectValidationException() {
+        tema.setID(null);
+        ValidationException exception = Assertions.assertThrows(ValidationException.class, () -> service.addTema(tema));
+        Assertions.assertEquals("Numar tema invalid!", exception.getMessage());
+        tema.setID("1");
     }
 }
