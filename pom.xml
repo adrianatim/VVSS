@@ -6,7 +6,7 @@
 
     <groupId>org.example</groupId>
     <artifactId>Lab1</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>3.0.0-M5</version>
     <dependencies>
         <dependency>
             <groupId>org.testng</groupId>
@@ -23,8 +23,8 @@
     </dependencies>
 
     <properties>
-        <maven.compiler.source>15</maven.compiler.source>
-        <maven.compiler.target>15</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
 </project>
