@@ -53,8 +53,11 @@ public class TestAddGrade {
 
     @Test
     public void test_addValidGrade_expectNothingToThrow() {
-        test_addStudent_expectNothingToThrow();
-        test_addAssignment_expectNothingToThrow();
-        test_addGrade_expectNothingToThrow();
+        Student student = new Student("1", "Ana Mere", 937, "anaAre@mere.com");
+        Assertions.assertDoesNotThrow(() -> service.addStudent(student));
+        Tema tema = new Tema("3", "Decriere tema trebuie sa aiba minim 50 de caractere", 7, 7);
+        Assertions.assertDoesNotThrow(() -> service.addTema(tema));
+        Nota nota = new Nota("1", "1", "3", 8.8, LocalDate.now());
+        Assertions.assertDoesNotThrow(() -> service.addNota(nota, "Feedback"));
     }
 }
