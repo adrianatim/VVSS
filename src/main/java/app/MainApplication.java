@@ -33,5 +33,4 @@ public class MainApplication {
         UI ui = new UI(service);
         ui.run();
     }
-
 }
