@@ -275,14 +275,14 @@ public class TestService {
     }
 
     @Test
-    public void test_addValidTemaId_expectNothingToThrow(){
+    public void test_addValidTemaId_expectNothingToThrow() {
         tema.setID("10");
-        Assertions.assertDoesNotThrow(()->service.addTema(tema));
+        Assertions.assertDoesNotThrow(() -> service.addTema(tema));
         tema.setID("1");
     }
 
     @Test
-    public void test_addTemaEmptyDescription_expectValidationError(){
+    public void test_addTemaEmptyDescription_expectValidationError() {
         tema.setDescriere("");
         ValidationException exception = Assertions.assertThrows(ValidationException.class, () -> service.addTema(tema));
         Assertions.assertEquals("Descriere invalida!", exception.getMessage());
@@ -290,7 +290,7 @@ public class TestService {
     }
 
     @Test
-    public void test_addTemaNullDescription_expectValidationError(){
+    public void test_addTemaNullDescription_expectValidationError() {
         tema.setDescriere(null);
         ValidationException exception = Assertions.assertThrows(ValidationException.class, () -> service.addTema(tema));
         Assertions.assertEquals("Descriere invalida!", exception.getMessage());
@@ -298,7 +298,7 @@ public class TestService {
     }
 
     @Test
-    public void test_addTemaInvalidDescription_expectValidationError(){
+    public void test_addTemaInvalidDescription_expectValidationError() {
         tema.setDescriere("Descriere invalida...");
         ValidationException exception = Assertions.assertThrows(ValidationException.class, () -> service.addTema(tema));
         Assertions.assertEquals("Descriere invalida!", exception.getMessage());
@@ -306,14 +306,14 @@ public class TestService {
     }
 
     @Test
-    public void test_addTemaValidDescription_expectNothingToThrow(){
+    public void test_addTemaValidDescription_expectNothingToThrow() {
         tema.setDescriere("Valid description that has more de 50 characters, then we except nothing to throw");
-        Assertions.assertDoesNotThrow(()->service.addTema(tema));
+        Assertions.assertDoesNotThrow(() -> service.addTema(tema));
         tema.setDescriere("Decriere tema trebuie sa aiba minim 50 de caractere");
     }
 
     @Test
-    public void test_addTemaInvalidDeadline1_expectValidationError(){
+    public void test_addTemaInvalidDeadline1_expectValidationError() {
         tema.setDeadline(-1);
         ValidationException exception = Assertions.assertThrows(ValidationException.class, () -> service.addTema(tema));
         Assertions.assertEquals("Deadlineul trebuie sa fie intre 1-14.", exception.getMessage());
@@ -321,7 +321,7 @@ public class TestService {
     }
 
     @Test
-    public void test_addTemaInvalidDeadline2_expectValidationError(){
+    public void test_addTemaInvalidDeadline2_expectValidationError() {
         tema.setDeadline(15);
         ValidationException exception = Assertions.assertThrows(ValidationException.class, () -> service.addTema(tema));
         Assertions.assertEquals("Deadlineul trebuie sa fie intre 1-14.", exception.getMessage());
@@ -329,14 +329,14 @@ public class TestService {
     }
 
     @Test
-    public void test_addTemaValidDeadline_expectNothingToThrow(){
+    public void test_addTemaValidDeadline_expectNothingToThrow() {
         tema.setDeadline(5);
-        Assertions.assertDoesNotThrow(()->service.addTema(tema));
+        Assertions.assertDoesNotThrow(() -> service.addTema(tema));
         tema.setDeadline(3);
     }
 
     @Test
-    public void test_addTemaInvalidPrimire1_expectValidationError(){
+    public void test_addTemaInvalidPrimire1_expectValidationError() {
         tema.setPrimire(-1);
         ValidationException exception = Assertions.assertThrows(ValidationException.class, () -> service.addTema(tema));
         Assertions.assertEquals("Saptamana primirii trebuie sa fie intre 1-14.", exception.getMessage());
@@ -344,7 +344,7 @@ public class TestService {
     }
 
     @Test
-    public void test_addTemaInvalidPrimire2_expectValidationError(){
+    public void test_addTemaInvalidPrimire2_expectValidationError() {
         tema.setPrimire(15);
         ValidationException exception = Assertions.assertThrows(ValidationException.class, () -> service.addTema(tema));
         Assertions.assertEquals("Saptamana primirii trebuie sa fie intre 1-14.", exception.getMessage());
@@ -352,18 +352,9 @@ public class TestService {
     }
 
     @Test
-    public void test_addTemaValidPrimire_expectNothingToThrow(){
+    public void test_addTemaValidPrimire_expectNothingToThrow() {
         tema.setPrimire(1);
-        Assertions.assertDoesNotThrow(()->service.addTema(tema));
+        Assertions.assertDoesNotThrow(() -> service.addTema(tema));
         tema.setPrimire(2);
     }
-
-    @Test
-    public void test_addTemaInvalidDeadlineForGivenPrimire_expectValidationError(){
-        tema.setDeadline(1);
-        ValidationException exception = Assertions.assertThrows(ValidationException.class, () -> service.addTema(tema));
-        Assertions.assertEquals("Deadline-ul trebuie sa fie mai mare decat saptamana primirii.", exception.getMessage());
-        tema.setDeadline(3);
-    }
-
 }
